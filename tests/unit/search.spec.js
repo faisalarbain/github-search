@@ -111,6 +111,8 @@ describe("search", function() {
 
     expect(resultList().exists()).equal(true);
     expect(emptyState().exists()).equal(false);
+
+    expect(resultList().vm.$props.results).has.lengthOf(10);
   });
 
   it("can navigate to next page");

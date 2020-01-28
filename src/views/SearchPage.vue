@@ -2,7 +2,7 @@
   <div>
     <search-form @search="search" />
     <empty-state v-if="!totalResult" />
-    <result-list v-if="totalResult" />
+    <result-list :results="results" v-if="totalResult" />
   </div>
 </template>
 
