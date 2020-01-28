@@ -15,7 +15,10 @@ export default {
   },
   methods: {
     search(keyword) {
-      this.$router.push({ path: this.$route.path, query: { q: keyword } });
+      this.$router.push({
+        path: this.$route.path,
+        query: { q: keyword, page: 1 }
+      });
     }
   }
 };

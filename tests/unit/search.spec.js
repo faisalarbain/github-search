@@ -57,6 +57,7 @@ describe("search", function() {
     input.trigger("keypress.enter");
 
     expect(wrapper.vm.$route.query.q).equal("vue");
+    expect(wrapper.vm.$route.query.page).equal(1);
   });
 
   it("validate input. no input, show error message", function() {
