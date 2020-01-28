@@ -2,12 +2,15 @@ import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";
 import SearchPage from "@/views/SearchPage";
 import EmptyState from "@/components/EmptyState";
+import SearchForm from "@/components/SearchForm";
 
 describe("search", function() {
   it("show empty state", function() {
     const wrapper = shallowMount(SearchPage);
     const emptyState = wrapper.find(EmptyState);
+    const searchForm = wrapper.find(SearchForm);
     expect(emptyState.exists()).equal(true);
+    expect(searchForm.exists()).equal(true);
   });
   it("set value to search will not trigger search");
   it("press enter will trigger search");
