@@ -1,3 +1,5 @@
-export default async keyword => {
-  return [keyword];
+export default {
+  search: async keyword => {
+    return [keyword];
+  }
 };

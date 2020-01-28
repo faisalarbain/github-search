@@ -11,7 +11,7 @@ export default {
   },
   actions: {
     search(context, keyword) {
-      GithubSearch(keyword).then(result => {
+      GithubSearch.search(keyword).then(result => {
         context.commit("SET_RESULTS", result);
       });
     }

@@ -1,9 +1,9 @@
-module.exports = {
-  422: {
+export default {
+  "422": {
     message: "Only the first 1000 search results are available",
     documentation_url: "https://developer.github.com/v3/search/"
   },
-  200: {
+  "200": {
     total_count: 349139,
     incomplete_results: false,
     items: [

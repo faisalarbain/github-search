@@ -3,13 +3,19 @@ import sinon from "sinon";
 import * as R from "ramda";
 import store from "@/store";
 import { expect } from "chai";
+import fixture from "./fixture";
 import VueRouter from "vue-router";
 import SearchPage from "@/views/SearchPage";
 import EmptyState from "@/components/EmptyState";
 import SearchForm from "@/components/SearchForm";
+import GithubSearch from "@/service/GithubSearch";
 import { mount, createLocalVue } from "@vue/test-utils";
 
 describe("search", function() {
+  beforeEach(function() {
+    sinon.restore();
+  });
+
   const build = () => {
     const localVue = createLocalVue();
     localVue.use(VueRouter);
@@ -87,6 +93,9 @@ describe("search", function() {
   });
 
   it("show 10 results per page", async function() {
+    const fake = sinon.fake.returns(Promise.resolve(fixture["200"]));
+    sinon.replace(GithubSearch, "search", fake);
+
     const { wrapper } = build();
 
     wrapper.vm.search("react");
