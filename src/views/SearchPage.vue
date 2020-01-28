@@ -25,7 +25,10 @@ export default {
   },
   computed: {
     results() {
-      return this.$store.state.searchResults;
+      return this.$store.getters.results;
+    },
+    totalResult() {
+      return this.$store.getters.totalResult;
     }
   }
 };

@@ -102,6 +102,7 @@ describe("search", function() {
     expect(wrapper.vm.$route.query.q).equal("react");
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.results).has.lengthOf(10);
+    expect(wrapper.vm.totalResult).equal(fixture["200"].total_count);
   });
 
   it("can navigate to next page");
