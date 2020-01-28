@@ -14,7 +14,7 @@ export default {
     Icon
   },
   props: {
-    label: String,
+    label: [String, Number],
     icon: String
   }
 };
