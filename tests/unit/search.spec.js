@@ -7,6 +7,7 @@ import fixture from "./fixture";
 import VueRouter from "vue-router";
 import SearchPage from "@/views/SearchPage";
 import EmptyState from "@/components/EmptyState";
+import ResultList from "@/components/ResultList";
 import SearchForm from "@/components/SearchForm";
 import GithubSearch from "@/service/GithubSearch";
 import { mount, createLocalVue } from "@vue/test-utils";
@@ -31,7 +32,8 @@ describe("search", function() {
     return {
       wrapper,
       emptyState: () => wrapper.find(EmptyState),
-      searchForm: () => wrapper.find(SearchForm)
+      searchForm: () => wrapper.find(SearchForm),
+      resultList: () => wrapper.find(ResultList)
     };
   };
 
@@ -96,13 +98,17 @@ describe("search", function() {
     const fake = sinon.fake.returns(Promise.resolve(fixture["200"]));
     sinon.replace(GithubSearch, "search", fake);
 
-    const { wrapper } = build();
+    const { wrapper, resultList } = build();
 
     wrapper.vm.search("react");
     expect(wrapper.vm.$route.query.q).equal("react");
+
     await wrapper.vm.$nextTick();
+
     expect(wrapper.vm.results).has.lengthOf(10);
     expect(wrapper.vm.totalResult).equal(fixture["200"].total_count);
+
+    expect(resultList().exists()).equal(true);
   });
 
   it("can navigate to next page");
