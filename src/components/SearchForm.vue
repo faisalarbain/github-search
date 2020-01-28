@@ -8,6 +8,7 @@
         v-model="str"
         :class="{ 'is-danger': error }"
         placeholder="Search"
+        ref="input"
       />
       <span class="icon is-small is-right">
         <icon name="search" />
@@ -33,6 +34,9 @@ export default {
       str: this.keyword,
       error: false
     };
+  },
+  mounted(){
+    this.$refs.input.focus();
   },
   methods: {
     submit() {
