@@ -19,7 +19,7 @@ describe("search", function() {
     const wrapper = mount(SearchPage, {
       localVue,
       router,
-      store: R.clone(store)
+      store: new Vuex.Store(R.clone(store))
     });
 
     return {
@@ -86,11 +86,12 @@ describe("search", function() {
     );
   });
 
-  it("show 10 results per page", function() {
+  it("show 10 results per page", async function() {
     const { wrapper } = build();
 
     wrapper.vm.search("react");
     expect(wrapper.vm.$route.query.q).equal("react");
+    await wrapper.vm.$nextTick();
     expect(wrapper.vm.results).has.lengthOf(10);
   });
 

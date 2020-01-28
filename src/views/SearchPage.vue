@@ -19,6 +19,8 @@ export default {
         path: this.$route.path,
         query: { q: keyword, page: 1 }
       });
+
+      this.$store.dispatch("search", keyword);
     }
   },
   computed: {
