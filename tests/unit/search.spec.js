@@ -38,9 +38,10 @@ describe("search", function() {
   };
 
   it("show empty state", function() {
-    const { emptyState, searchForm } = build();
+    const { emptyState, searchForm, resultList } = build();
     expect(emptyState().exists()).equal(true);
     expect(searchForm().exists()).equal(true);
+    expect(resultList().exists()).equal(false);
   });
 
   it("set value to search will not trigger search", function() {
@@ -98,7 +99,7 @@ describe("search", function() {
     const fake = sinon.fake.returns(Promise.resolve(fixture["200"]));
     sinon.replace(GithubSearch, "search", fake);
 
-    const { wrapper, resultList } = build();
+    const { wrapper, resultList, emptyState } = build();
 
     wrapper.vm.search("react");
     expect(wrapper.vm.$route.query.q).equal("react");
@@ -109,6 +110,7 @@ describe("search", function() {
     expect(wrapper.vm.totalResult).equal(fixture["200"].total_count);
 
     expect(resultList().exists()).equal(true);
+    expect(emptyState().exists()).equal(false);
   });
 
   it("can navigate to next page");

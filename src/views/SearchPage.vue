@@ -1,8 +1,8 @@
 <template>
   <div>
     <search-form @search="search" />
-    <empty-state />
-    <result-list />
+    <empty-state v-if="!totalResult" />
+    <result-list v-if="totalResult" />
   </div>
 </template>
 
