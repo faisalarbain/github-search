@@ -59,7 +59,7 @@ describe("search", function() {
       .find(".input")
       .setValue("vue");
 
-    expect(searchForm().vm.$data.keyword).to.equal("vue");
+    expect(searchForm().vm.$data.str).to.equal("vue");
 
     expect(emptyState().exists()).equal(true);
     expect(searchStub.called).equal(false);
@@ -151,7 +151,6 @@ describe("search", function() {
     });
     expect(resultList.find(Pagination).exists()).equal(true);
   });
-  it("can navigate to next page");
   it("show error message if no result");
   it("show all information required");
 });
