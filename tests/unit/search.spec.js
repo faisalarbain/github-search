@@ -158,9 +158,13 @@ describe("search", function() {
 });
 
 describe.only("paginator", function() {
-  it("total: 2, current: 1", function() {
-    const output = Paginator(2, 1);
-    expect(output).to.deep.equal([1, 2]);
-    expect(output.current).equal(1);
+  const params = [{ total: 2, current: 1, expected: [1, 2] }];
+
+  params.forEach(item => {
+    it(`total: ${item.total}, current: ${item.current}`, function() {
+      const output = Paginator(item.total, item.current);
+      expect(output).to.deep.equal(item.expected);
+      expect(output.current).equal(item.current);
+    });
   });
 });
