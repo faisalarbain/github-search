@@ -1,13 +1,21 @@
 import sinon from "sinon";
 import { expect } from "chai";
-import { mount } from "@vue/test-utils";
+import VueRouter from "vue-router";
 import SearchPage from "@/views/SearchPage";
 import EmptyState from "@/components/EmptyState";
 import SearchForm from "@/components/SearchForm";
+import { mount, createLocalVue } from "@vue/test-utils";
 
 describe("search", function() {
   const build = () => {
-    const wrapper = mount(SearchPage);
+    const localVue = createLocalVue();
+    localVue.use(VueRouter);
+    const router = new VueRouter();
+
+    const wrapper = mount(SearchPage, {
+      localVue,
+      router
+    });
 
     return {
       wrapper,
@@ -44,17 +52,11 @@ describe("search", function() {
   it("press enter will trigger search", function() {
     const { searchForm, wrapper } = build();
 
-    const searchStub = sinon.stub();
-
-    wrapper.setMethods({
-      search: searchStub
-    });
-
     const input = searchForm().find(".input");
     input.setValue("vue");
     input.trigger("keypress.enter");
 
-    expect(searchStub.called).equal(true);
+    expect(wrapper.vm.$route.query.q).equal("vue");
   });
 
   it("validate input. no input, show error message", function() {

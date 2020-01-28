@@ -14,8 +14,8 @@ export default {
     SearchForm
   },
   methods: {
-    search() {
-      alert("Search!");
+    search(keyword) {
+      this.$router.push({ path: this.$route.path, query: { q: keyword } });
     }
   }
 };
