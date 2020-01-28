@@ -19,8 +19,8 @@ export default {
     }
   },
   actions: {
-    search(context, keyword) {
-      GithubSearch.search(keyword, context.state.per_page).then(result => {
+    search(context, {q, page}) {
+      GithubSearch.search(q, page, context.state.per_page).then(result => {
         context.commit("SET_RESULTS", result);
       });
     }

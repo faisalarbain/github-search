@@ -149,7 +149,6 @@ describe("search", function() {
         perPage: 10
       }
     });
-    console.log(resultList.html());
     expect(resultList.find(Pagination).exists()).equal(true);
   });
   it("can navigate to next page");
@@ -157,10 +156,25 @@ describe("search", function() {
   it("show all information required");
 });
 
-describe.only("paginator", function() {
+describe("paginator", function() {
   const params = [
     { total: 2, current: 1, expected: [1, 2] },
-    { total: 5, current: 1, expected: [1, 2, 3, 4, 5] }
+    { total: 3, current: 2, expected: [1, 2, 3] },
+    { total: 4, current: 1, expected: [1, 2, 3, 4] },
+    { total: 5, current: 1, expected: [1, 2, 3, "...", 5] },
+    { total: 6, current: 1, expected: [1, 2, 3, "...", 6] },
+    { total: 10, current: 3, expected: [1, 2, 3, 4, 5, "...", 10] },
+    { total: 10, current: 8, expected: [1, "...", 6, 7, 8, 9, 10] },
+    {
+      total: 20,
+      current: 10,
+      expected: [1, "...", 8, 9, 10, 11, 12, "...", 20]
+    },
+    {
+      total: 5,
+      current: 4,
+      expected: [1, 2, 3, 4, 5]
+    }
   ];
 
   params.forEach(item => {

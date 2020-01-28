@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <pagination v-if="totalResult > perPage" />
+    <pagination v-if="totalResult > perPage" :total="10" :current="current" />
   </div>
 </template>
 
@@ -47,6 +47,10 @@ export default {
       type: Number,
       default: 0
     },
+    current:{
+      type: Number,
+      default: 1
+    },
     totalResult: {
       type: Number,
       default: 0
@@ -57,6 +61,7 @@ export default {
         return [];
       }
     }
-  }
+  },
+  
 };
 </script>

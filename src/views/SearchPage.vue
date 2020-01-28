@@ -36,14 +36,17 @@ export default {
     SearchForm,
     ResultList
   },
+  watch: {
+    $route() {
+      this.$store.dispatch("search", this.$route.query);
+    }
+  },
   methods: {
     search(keyword) {
       this.$router.push({
         path: this.$route.path,
         query: { q: keyword, page: 1 }
       });
-
-      this.$store.dispatch("search", keyword);
     }
   },
   computed: {
