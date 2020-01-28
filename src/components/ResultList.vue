@@ -28,17 +28,25 @@
         </div>
       </div>
     </div>
+
+    <pagination v-if="totalResult > perPage" />
   </div>
 </template>
 
 <script>
-import ItemTag from "@/components/ItemTag";
+import ItemTag from "./ItemTag";
+import Pagination from "./Pagination";
 
 export default {
   components: {
-    ItemTag
+    ItemTag,
+    Pagination
   },
   props: {
+    perPage: {
+      type: Number,
+      default: 0
+    },
     totalResult: {
       type: Number,
       default: 0

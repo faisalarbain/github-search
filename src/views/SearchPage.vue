@@ -15,6 +15,7 @@
               <result-list
                 :results="results"
                 :total-result="totalResult"
+                :per-page="perpage"
                 v-if="totalResult"
               />
             </div>
@@ -51,6 +52,9 @@ export default {
     },
     totalResult() {
       return this.$store.getters.totalResult;
+    },
+    perpage() {
+      return this.$store.state.per_page;
     }
   }
 };

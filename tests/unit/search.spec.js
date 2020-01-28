@@ -7,6 +7,7 @@ import fixture from "./fixture";
 import VueRouter from "vue-router";
 import SearchPage from "@/views/SearchPage";
 import EmptyState from "@/components/EmptyState";
+import Pagination from "@/components/Pagination";
 import ResultList from "@/components/ResultList";
 import SearchForm from "@/components/SearchForm";
 import GithubSearch from "@/service/GithubSearch";
@@ -118,7 +119,39 @@ describe("search", function() {
     );
   });
 
-  it("hide pagination if result less than 10");
+  it("hide pagination if result less than 10", function() {
+    const resultList = mount(ResultList, {
+      propsData: {
+        totalResult: 9,
+        perPage: 10
+      }
+    });
+
+    expect(resultList.find(Pagination).exists()).equal(false);
+  });
+
+  it("hide pagination if result less equal 10", function() {
+    const resultList = mount(ResultList, {
+      propsData: {
+        totalResult: 10,
+        perPage: 10
+      }
+    });
+
+    expect(resultList.find(Pagination).exists()).equal(false);
+  });
+
+  it("show pagination if result more than 10", function() {
+    const resultList = mount(ResultList, {
+      propsData: {
+        totalResult: 11,
+        perPage: 10
+      }
+    });
+    console.log(resultList.html());
+    expect(resultList.find(Pagination).exists()).equal(true);
+  });
+
   it("can navigate to next page");
   it("show error message if no result");
   it("show all information required");
