@@ -1,4 +1,7 @@
+import Vuex from "vuex";
 import sinon from "sinon";
+import * as R from "ramda";
+import store from "@/store";
 import { expect } from "chai";
 import VueRouter from "vue-router";
 import SearchPage from "@/views/SearchPage";
@@ -10,11 +13,13 @@ describe("search", function() {
   const build = () => {
     const localVue = createLocalVue();
     localVue.use(VueRouter);
+    localVue.use(Vuex);
     const router = new VueRouter();
 
     const wrapper = mount(SearchPage, {
       localVue,
-      router
+      router,
+      store: R.clone(store)
     });
 
     return {

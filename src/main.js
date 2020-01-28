@@ -1,14 +1,16 @@
 import Vue from "vue";
+import Vuex from "vuex";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import "./assets/styles.scss";
-
+Vue.use(Vuex);
 Vue.config.productionTip = false;
+
+import "./assets/styles.scss";
 
 new Vue({
   router,
-  store,
+  store: new Vuex.Store(store),
   render: h => h(App)
 }).$mount("#app");

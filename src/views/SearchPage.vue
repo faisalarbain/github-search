@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     results() {
-      return [];
+      return this.$store.state.searchResults;
     }
   }
 };
