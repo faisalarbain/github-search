@@ -1,6 +1,6 @@
 <template>
   <div>
-    <search-form />
+    <search-form @search="search" />
     <empty-state />
   </div>
 </template>
@@ -14,7 +14,9 @@ export default {
     SearchForm
   },
   methods: {
-    search() {}
+    search() {
+      alert("Search!");
+    }
   }
 };
 </script>

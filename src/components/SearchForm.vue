@@ -1,6 +1,11 @@
 <template>
   <div>
-    <input type="text" class="input" v-model="keyword" />
+    <input
+      @keypress.enter="submit"
+      type="text"
+      class="input"
+      v-model="keyword"
+    />
   </div>
 </template>
 
@@ -10,6 +15,11 @@ export default {
     return {
       keyword: ""
     };
+  },
+  methods: {
+    submit() {
+      this.$emit("search", this.keyword);
+    }
   }
 };
 </script>
