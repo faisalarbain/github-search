@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h2 class="title is-6">{{ totalResult }} repository results</h2>
+    <div class="level">
+      <div class="level-left">
+        <h2 class="title is-6">{{ totalResult }} repository results</h2>
+      </div>
+      <div class="level-right">
+        <a href="/">Reset</a>
+      </div>
+    </div>
     <div v-for="(result, i) in results" :key="i" class="result-item">
       <div class="card-content">
         <div class="columns">
