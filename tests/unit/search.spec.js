@@ -113,6 +113,9 @@ describe("search", function() {
     expect(emptyState().exists()).equal(false);
 
     expect(resultList().vm.$props.results).has.lengthOf(10);
+    expect(resultList().vm.$props.totalResult).equal(
+      fixture["200"].total_count
+    );
   });
 
   it("can navigate to next page");

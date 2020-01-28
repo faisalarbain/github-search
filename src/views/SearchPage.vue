@@ -1,8 +1,27 @@
 <template>
-  <div>
-    <search-form @search="search" />
-    <empty-state v-if="!totalResult" />
-    <result-list :results="results" v-if="totalResult" />
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="column" style="margin-bottom:20px;">
+        <h1 class="title is-5 has-text-grey">Github Search</h1>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="columns is-multiline">
+            <div class="column is-12 stickyHeader">
+              <search-form @search="search" />
+            </div>
+            <div class="column is-12">
+              <empty-state v-if="!totalResult" />
+              <result-list
+                :results="results"
+                :total-result="totalResult"
+                v-if="totalResult"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

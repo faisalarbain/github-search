@@ -9,3 +9,13 @@ $danger: $red;
 html{
   background-color: $light;
 }
+
+.result-item{
+  border-top: solid 1px $light;
+}
+
+.stickyHeader{
+  position: sticky;
+  top:0;
+  background: $white;
+}
