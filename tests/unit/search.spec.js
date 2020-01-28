@@ -7,7 +7,7 @@ describe("search", function() {
   it("show empty state", function() {
     const wrapper = shallowMount(SearchPage);
     const emptyState = wrapper.find(EmptyState);
-    expect(emptyState.exists()).to.be.true();
+    expect(emptyState.exists()).equal(true);
   });
   it("set value to search will not trigger search");
   it("press enter will trigger search");
