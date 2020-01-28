@@ -30,9 +30,11 @@ describe("search", function() {
     wrapper.setMethods({
       search: searchStub
     });
-    const input = searchForm().find(".input");
-    expect(input.exists()).equal(true);
-    input.setValue("vue");
+
+    searchForm()
+      .find(".input")
+      .setValue("vue");
+
     expect(searchForm().vm.$data.keyword).to.equal("vue");
 
     expect(emptyState().exists()).equal(true);
@@ -47,6 +49,7 @@ describe("search", function() {
     wrapper.setMethods({
       search: searchStub
     });
+
     const input = searchForm().find(".input");
     input.setValue("vue");
     input.trigger("keypress.enter");
