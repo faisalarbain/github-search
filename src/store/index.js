@@ -11,9 +11,11 @@ export default {
   },
   actions: {
     search(context, keyword) {
-      GithubSearch.search(keyword).then(result => {
-        context.commit("SET_RESULTS", result);
-      });
+      GithubSearch.search(keyword)
+        .then(GithubSearch.process)
+        .then(result => {
+          context.commit("SET_RESULTS", result);
+        });
     }
   },
   modules: {}
