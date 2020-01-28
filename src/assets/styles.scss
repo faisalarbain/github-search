@@ -1,0 +1,11 @@
+@import './colors.scss';
+
+$primary: $blue;
+$info: $light-blue;
+$danger: $red;
+
+@import 'bulma';
+
+html{
+  background-color: $light;
+}
