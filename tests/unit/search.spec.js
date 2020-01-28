@@ -81,7 +81,14 @@ describe("search", function() {
     );
   });
 
-  it("show 10 results per page");
+  it("show 10 results per page", function() {
+    const { wrapper } = build();
+
+    wrapper.vm.search("react");
+    expect(wrapper.vm.$route.query.q).equal("react");
+    expect(wrapper.vm.results).has.lengthOf(10);
+  });
+
   it("can navigate to next page");
   it("show error message if no result");
   it("show all information required");

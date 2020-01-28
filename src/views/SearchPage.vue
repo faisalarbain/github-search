@@ -20,6 +20,11 @@ export default {
         query: { q: keyword, page: 1 }
       });
     }
+  },
+  computed: {
+    results() {
+      return [];
+    }
   }
 };
 </script>
