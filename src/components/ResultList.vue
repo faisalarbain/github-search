@@ -29,7 +29,12 @@
       </div>
     </div>
 
-    <pagination v-if="totalResult > perPage" :total="10" :current="current" />
+    <pagination
+      @changePage="changePage"
+      v-if="totalResult > perPage"
+      :total="10"
+      :current="current"
+    />
   </div>
 </template>
 
@@ -47,8 +52,8 @@ export default {
       type: Number,
       default: 0
     },
-    current:{
-      type: Number,
+    current: {
+      type: [Number, String],
       default: 1
     },
     totalResult: {
@@ -62,6 +67,15 @@ export default {
       }
     }
   },
-  
+  methods: {
+    changePage(page) {
+      this.$router.push({
+        query: {
+          ...this.$route.query,
+          page
+        }
+      });
+    }
+  }
 };
 </script>

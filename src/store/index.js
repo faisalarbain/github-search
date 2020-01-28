@@ -19,7 +19,10 @@ export default {
     }
   },
   actions: {
-    search(context, {q, page}) {
+    search(context, { q, page }) {
+      if (!q) {
+        return;
+      }
       GithubSearch.search(q, page, context.state.per_page).then(result => {
         context.commit("SET_RESULTS", result);
       });

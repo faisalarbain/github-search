@@ -8,13 +8,14 @@
         <div class="card-content">
           <div class="columns is-multiline">
             <div class="column is-12 stickyHeader">
-              <search-form @search="search" />
+              <search-form @search="search" :keyword="keyword" />
             </div>
             <div class="column is-12">
               <empty-state v-if="!totalResult" />
               <result-list
                 :results="results"
                 :total-result="totalResult"
+                :current="$route.query.page"
                 :per-page="perpage"
                 v-if="totalResult"
               />
@@ -36,12 +37,18 @@ export default {
     SearchForm,
     ResultList
   },
+  mounted() {
+    this.doSearch();
+  },
   watch: {
     $route() {
-      this.$store.dispatch("search", this.$route.query);
+      this.doSearch();
     }
   },
   methods: {
+    doSearch() {
+      this.$store.dispatch("search", this.$route.query);
+    },
     search(keyword) {
       this.$router.push({
         path: this.$route.path,
@@ -50,6 +57,9 @@ export default {
     }
   },
   computed: {
+    keyword() {
+      return this.$route.query.q;
+    },
     results() {
       return this.$store.getters.results;
     },

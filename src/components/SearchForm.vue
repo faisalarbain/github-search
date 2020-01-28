@@ -5,7 +5,7 @@
         @keypress.enter="submit"
         type="text"
         class="input"
-        v-model="keyword"
+        v-model="str"
         :class="{ 'is-danger': error }"
         placeholder="Search"
       />
@@ -17,21 +17,27 @@
 </template>
 
 <script>
-import Icon from './Icon'
+import Icon from "./Icon";
 export default {
-  components:{
+  components: {
     Icon
+  },
+  props: {
+    keyword: String,
+    default() {
+      return "";
+    }
   },
   data() {
     return {
-      keyword: "",
+      str: this.keyword,
       error: false
     };
   },
   methods: {
     submit() {
-      if (this.keyword) {
-        this.$emit("search", this.keyword);
+      if (this.str) {
+        this.$emit("search", this.str);
       } else {
         this.error = true;
       }

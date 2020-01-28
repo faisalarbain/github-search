@@ -7,7 +7,7 @@
         </li>
         <li :key="i" v-else>
           <a
-            @click="$emit('change', p)"
+            @click="$emit('changePage', p)"
             class="pagination-link"
             :class="{ 'is-current': pages.current == p }"
             :aria-label="`Goto page ${p}`"
@@ -25,7 +25,7 @@ import Paginator from "@/service/Paginator";
 export default {
   props: {
     total: Number,
-    current: Number
+    current: [Number, String]
   },
   computed: {
     pages() {
