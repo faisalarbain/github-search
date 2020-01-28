@@ -5,6 +5,7 @@
       type="text"
       class="input"
       v-model="keyword"
+      :class="{ 'is-danger': error }"
     />
   </div>
 </template>
@@ -13,12 +14,17 @@
 export default {
   data() {
     return {
-      keyword: ""
+      keyword: "",
+      error: false
     };
   },
   methods: {
     submit() {
-      this.$emit("search", this.keyword);
+      if (this.keyword) {
+        this.$emit("search", this.keyword);
+      } else {
+        this.error = true;
+      }
     }
   }
 };

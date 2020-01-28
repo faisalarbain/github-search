@@ -57,7 +57,27 @@ describe("search", function() {
     expect(searchStub.called).equal(true);
   });
 
-  it("validate input. no input, show error message");
+  it("validate input. no input, show error message", function() {
+    const { searchForm, wrapper } = build();
+
+    const searchStub = sinon.stub();
+
+    wrapper.setMethods({
+      search: searchStub
+    });
+
+    const input = searchForm().find(".input");
+    input.setValue("");
+    input.trigger("keypress.enter");
+
+    expect(searchStub.called).equal(false);
+    expect(
+      searchForm()
+        .find(".is-danger")
+        .exists()
+    );
+  });
+
   it("show 10 results per page");
   it("can navigate to next page");
   it("show error message if no result");
