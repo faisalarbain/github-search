@@ -118,6 +118,7 @@ describe("search", function() {
     );
   });
 
+  it("hide pagination if result less than 10");
   it("can navigate to next page");
   it("show error message if no result");
   it("show all information required");
