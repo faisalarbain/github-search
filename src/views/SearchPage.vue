@@ -12,6 +12,9 @@ export default {
   components: {
     EmptyState,
     SearchForm
+  },
+  methods: {
+    search() {}
   }
 };
 </script>

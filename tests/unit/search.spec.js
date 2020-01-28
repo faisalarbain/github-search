@@ -1,3 +1,4 @@
+import sinon from "sinon";
 import { expect } from "chai";
 import { mount } from "@vue/test-utils";
 import SearchPage from "@/views/SearchPage";
@@ -22,14 +23,20 @@ describe("search", function() {
   });
 
   it("set value to search will not trigger search", function() {
-    const { emptyState, searchForm } = build();
+    const { emptyState, searchForm, wrapper } = build();
 
+    const searchStub = sinon.stub();
+
+    wrapper.setMethods({
+      search: searchStub
+    });
     const input = searchForm().find(".input");
     expect(input.exists()).equal(true);
     input.setValue("vue");
     expect(searchForm().vm.$data.keyword).to.equal("vue");
 
     expect(emptyState().exists()).equal(true);
+    expect(searchStub.called).equal(false);
   });
 
   it("press enter will trigger search");
