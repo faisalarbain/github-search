@@ -158,7 +158,10 @@ describe("search", function() {
 });
 
 describe.only("paginator", function() {
-  const params = [{ total: 2, current: 1, expected: [1, 2] }];
+  const params = [
+    { total: 2, current: 1, expected: [1, 2] },
+    // { total: 5, current: 1, expected: [1, 2, 3, 4, 5] }
+  ];
 
   params.forEach(item => {
     it(`total: ${item.total}, current: ${item.current}`, function() {

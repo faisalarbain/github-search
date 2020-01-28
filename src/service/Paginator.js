@@ -1,5 +1,5 @@
-export default () => {
-  let output = [1, 2];
-  output.current = 1;
+export default (total, current) => {
+  let output = [...Array(total).keys()].map(i => i + 1);
+  output.current = current;
   return output;
 };
