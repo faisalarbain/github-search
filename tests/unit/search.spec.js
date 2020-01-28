@@ -11,6 +11,7 @@ import Pagination from "@/components/Pagination";
 import ResultList from "@/components/ResultList";
 import SearchForm from "@/components/SearchForm";
 import GithubSearch from "@/service/GithubSearch";
+import Paginator from "@/service/Paginator";
 import { mount, createLocalVue } from "@vue/test-utils";
 
 describe("search", function() {
@@ -151,8 +152,15 @@ describe("search", function() {
     console.log(resultList.html());
     expect(resultList.find(Pagination).exists()).equal(true);
   });
-
   it("can navigate to next page");
   it("show error message if no result");
   it("show all information required");
+});
+
+describe.only("paginator", function() {
+  it("total: 2, current: 1", function() {
+    const output = Paginator(2, 1);
+    expect(output).to.deep.equal([1, 2]);
+    expect(output.current).equal(1);
+  });
 });
