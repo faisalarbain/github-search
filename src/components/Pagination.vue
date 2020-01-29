@@ -9,7 +9,7 @@
           <a
             @click="$emit('changePage', p)"
             class="pagination-link"
-            :class="{ 'is-current': pages.current == p }"
+            :class="{ 'is-current is-light': pages.current == p }"
             :aria-label="`Goto page ${p}`"
             >{{ p }}</a
           >

@@ -35,34 +35,17 @@
         </div>
       </div>
     </div>
-
-    <pagination
-      @changePage="changePage"
-      v-if="totalResult > perPage"
-      :total="10"
-      :current="current"
-    />
   </div>
 </template>
 
 <script>
 import ItemTag from "./ItemTag";
-import Pagination from "./Pagination";
 
 export default {
   components: {
-    ItemTag,
-    Pagination
+    ItemTag
   },
   props: {
-    perPage: {
-      type: Number,
-      default: 0
-    },
-    current: {
-      type: [Number, String],
-      default: 1
-    },
     totalResult: {
       type: Number,
       default: 0
@@ -72,16 +55,6 @@ export default {
       default() {
         return [];
       }
-    }
-  },
-  methods: {
-    changePage(page) {
-      this.$router.push({
-        query: {
-          ...this.$route.query,
-          page
-        }
-      });
     }
   }
 };

@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     submit() {
+      this.error = false;
       if (this.str) {
         this.$emit("search", this.str);
       } else {

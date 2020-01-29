@@ -21,11 +21,14 @@ export default {
   actions: {
     search(context, { q, page }) {
       if (!q) {
-        return;
+        return Promise.reject("Query is required");
       }
-      GithubSearch.search(q, page, context.state.per_page).then(result => {
-        context.commit("SET_RESULTS", result);
-      });
+
+      return GithubSearch.search(q, page, context.state.per_page).then(
+        result => {
+          context.commit("SET_RESULTS", result);
+        }
+      );
     }
   },
   modules: {}
