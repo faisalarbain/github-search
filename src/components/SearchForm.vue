@@ -35,7 +35,7 @@ export default {
       error: false
     };
   },
-  mounted(){
+  mounted() {
     this.$refs.input.focus();
   },
   methods: {

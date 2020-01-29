@@ -3,6 +3,11 @@ export default {
     message: "Only the first 1000 search results are available",
     documentation_url: "https://developer.github.com/v3/search/"
   },
+  empty: {
+    total_count: 0,
+    incomplete_results: true,
+    items: []
+  },
   "200": {
     total_count: 349139,
     incomplete_results: false,

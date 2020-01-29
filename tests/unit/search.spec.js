@@ -7,7 +7,6 @@ import fixture from "./fixture";
 import VueRouter from "vue-router";
 import SearchPage from "@/views/SearchPage";
 import EmptyState from "@/components/EmptyState";
-import Pagination from "@/components/Pagination";
 import ResultList from "@/components/ResultList";
 import SearchForm from "@/components/SearchForm";
 import GithubSearch from "@/service/GithubSearch";
@@ -57,9 +56,9 @@ describe("search", function() {
 
     searchForm()
       .find(".input")
-      .setValue("vue");
+      .setValue("vuex");
 
-    expect(searchForm().vm.$data.str).to.equal("vue");
+    expect(searchForm().vm.$data.str).to.equal("vuex");
 
     expect(emptyState().exists()).equal(true);
     expect(searchStub.called).equal(false);
@@ -104,13 +103,11 @@ describe("search", function() {
     const { wrapper, resultList, emptyState } = build();
 
     wrapper.vm.search("react");
-    expect(wrapper.vm.$route.query.q).equal("react");
-
     await wrapper.vm.$nextTick();
-
     expect(wrapper.vm.results).has.lengthOf(10);
     expect(wrapper.vm.totalResult).equal(fixture["200"].total_count);
-
+    expect(wrapper.vm.$data.searchQuery.q).equal("react");
+    await wrapper.vm.$nextTick();
     expect(resultList().exists()).equal(true);
     expect(emptyState().exists()).equal(false);
 
@@ -120,39 +117,19 @@ describe("search", function() {
     );
   });
 
-  it("hide pagination if result less than 10", function() {
-    const resultList = mount(ResultList, {
-      propsData: {
-        totalResult: 9,
-        perPage: 10
-      }
-    });
+  it("show error message if no result", async function() {
+    const fake = sinon.fake.returns(Promise.resolve(fixture.empty));
+    sinon.replace(GithubSearch, "search", fake);
 
-    expect(resultList.find(Pagination).exists()).equal(false);
+    const { wrapper, resultList, emptyState } = build();
+
+    wrapper.vm.search("react");
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.results).has.lengthOf(0);
+    expect(resultList().exists()).equal(false);
+    expect(emptyState().exists()).equal(false);
+    expect(wrapper.find(".notification").exists()).equal(false);
   });
-
-  it("hide pagination if result less equal 10", function() {
-    const resultList = mount(ResultList, {
-      propsData: {
-        totalResult: 10,
-        perPage: 10
-      }
-    });
-
-    expect(resultList.find(Pagination).exists()).equal(false);
-  });
-
-  it("show pagination if result more than 10", function() {
-    const resultList = mount(ResultList, {
-      propsData: {
-        totalResult: 11,
-        perPage: 10
-      }
-    });
-    expect(resultList.find(Pagination).exists()).equal(true);
-  });
-  it("show error message if no result");
-  it("show all information required");
 });
 
 describe("paginator", function() {

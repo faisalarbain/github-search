@@ -131,10 +131,12 @@ export default {
       this.fsm.send(event, data);
     },
     doSearch() {
-      this.$router.push({
-        path: this.$route.path,
-        query: this.searchQuery
-      });
+      this.$router
+        .push({
+          path: this.$route.path,
+          query: this.searchQuery
+        })
+        .catch(() => {});
 
       this.$store
         .dispatch("search", this.searchQuery)
