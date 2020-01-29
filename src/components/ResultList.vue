@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="column">
-            <div class="columns">
+            <div class="columns is-mobile">
               <div class="column">
                 <item-tag icon="circle" :label="result.language" />
               </div>
