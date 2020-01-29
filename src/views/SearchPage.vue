@@ -1,10 +1,10 @@
 <template>
   <div class="columns is-centered">
     <div class="column is-8">
-      <div class="column" style="margin-bottom:20px;">
-        <h1 class="title is-5 has-text-grey">Github Search</h1>
+      <div class="column animated fadeInUp faster" style="margin-bottom:20px;">
+        <h1 class="title is-5 has-text-grey ">Github Search</h1>
       </div>
-      <div class="card">
+      <div class="card animated fadeInUp faster">
         <div class="card-content">
           <div class="columns is-multiline">
             <div class="column is-12 stickyHeader">
@@ -28,7 +28,9 @@
                   :total-result="totalResult"
                 />
                 <div v-else>
-                  <div class="notification is-light is-warning ">
+                  <div
+                    class="notification is-light is-warning animated zoomIn faster"
+                  >
                     <div class="content">
                       <p><b>Opps... No result found</b></p>
                       <a href="/" class="button is-outlined is-dark is-rounded"

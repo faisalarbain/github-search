@@ -7,6 +7,7 @@ import store from "./store";
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
+import "animate.css";
 import "./assets/styles.scss";
 
 new Vue({
